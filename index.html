@@ -2,70 +2,75 @@
 <html>
 <head>
 	<title>Computer Type Test</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-	<h1 id="result-heading"></h1>
-	<div id="result"></div>
-	<form id="computer-form">
-		<fieldset>
-			<legend>Budget:</legend>
-			<label><input type="radio" name="budget" value="a" required> 30.000 - 50.000</label><br>
-			<label><input type="radio" name="budget" value="b"> 50.000 - 70.000</label><br>
-			<label><input type="radio" name="budget" value="c"> 70.000 - 90.000</label><br>
-			<label><input type="radio" name="budget" value="f"> 90.000 - 110.000</label><br>
-		</fieldset>
-		<fieldset>
-			<legend>Zadachi:</legend>
-			<label><input type="radio" name="zadachi" value="a1" required> Rabota</label><br>
-			<label><input type="radio" name="zadachi" value="b1"> Igri</label><br>
-			<label><input type="radio" name="zadachi" value="c1"> Razrabotka</label><br>
-			<label><input type="radio" name="zadachi" value="d1"> Drygoe</label><br>
-		</fieldset>
-		<input type="submit" value="Submit">
-	</form>
+	<div id="container">
+		<h1 id="result-heading"></h1>
+		<div id="result"></div>
+		<form id="computer-form>
+			<fieldset>
+				<legend>Budget:</legend>
+				<label><input type="radio" name="budget" value="a" required> 30.000 - 50.000</label>
+				<label><input type="radio" name="budget" value="b"> 50.000 - 70.000</label>
+				<label><input type="radio" name="budget" value="c"> 70.000 - 90.000</label>
+				<label><input type="radio" name="budget" value="f"> 90.000 - 110.000</label>
+			</fieldset>
+			<fieldset>
+				<legend>Zadachi:</legend>
+				<label><input type="radio" name="zadachi" value="a1" required> Rabota</label>
+				<label><input type="radio" name="zadachi" value="b1"> Igri</label>
+				<label><input type="radio" name="zadachi" value="c1"> Razrabotka</label>
+				<label><input type="radio" name="zadachi" value="d1"> Drygoe</label>
+			</fieldset>
+			<button type="submit" id="submit-button">Submit</button>
+		</form>
+	</div>
+
 	<script>
 		const form = document.getElementById("computer-form");
 		const result = document.getElementById("result");
 		const resultHeading = document.getElementById("result-heading");
+		const submitButton = document.getElementById("submit-button")
 
-		form.addEventListener("submit", function(event) {
+		form.addEventListener("submit", function(event){
 			event.preventDefault();
 
 			const computer = document.querySelector('input[name="computer"]:checked').value;
 			const os = document.querySelector('input[name="os"]:checked').value;
 
 			let message = "";
-			if (computer === "desktop") {
+			if (computer === "desktop"){
 				message += "You have a desktop computer.<br>";
-			} else if (computer === "laptop") {
+			} else if (computer === "laptop"){
 				message += "You have a laptop.<br>";
-			} else if (computer === "tablet") {
+			} else if (computer === "tablet"){
 				message += "You have a tablet.<br>";
-			} else if (computer === "smartphone") {
+			} else if (computer === "smartphone"){
 				message += "You have a smartphone.<br>";
 			}
 
-			if (os === "windows") {
+			if (os === "windows"){
 				message += "Your operating system is Windows.<br>";
-			} else if (os === "macos") {
+			} else if (os === "macos"){
 				message += "Your operating system is macOS.<br>";
-			} else if (os === "linux") {
+			} else if (os === "linux")(
 				message += "Your operating system is Linux.<br>";
-			} else if (os === "chromeos") {
+			} else if (os === "chromeos")(
 				message += "Your operating system is Chrome OS.<br>";
 			}
 
-			resultHeading.innerHTML = "Your Result:";
+			resultHeading.innerHTML = "Your Result:"
 			result.innerHTML = message;
-			result.style.display = "block";
+			result.style.display = "block"
 
 			// Hide answer options
-			const radioButtons = document.querySelectorAll('input[type="radio"]');
+			const radioButtons = document.querySelectorAll('input[type="radio"]')
 			for (let i = 0; i < radioButtons.length; i++) {
-				radioButtons[i].style.display = "none";
+				radioButtons[i].style.display = "none",
 			}
-		});
+		}
 	</script>
 </body>
 </html>
