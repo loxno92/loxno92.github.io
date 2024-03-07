@@ -22,14 +22,14 @@
                 correctAnswer: 0
             },
             {
-                question: "What is the primary function of the GPU?",
+                question: "What is the primary function of the CPU?",
                 options: ["Process data", "Store data", "Control peripherals", "All of the above"],
-                correctAnswer: 3
+                correctAnswer: 0
             },
             {
-                question: "What is the primary function of the RAM?",
+                question: "What is the primary function of the CPU?",
                 options: ["Process data", "Store data", "Control peripherals", "All of the above"],
-                correctAnswer: 1
+                correctAnswer: 0
             }
         ];
 
@@ -44,11 +44,12 @@
         function loadQuestion(index) {
             const question = questions[index];
             questionsContainer.innerHTML = `
-                <h2>${question.question}</h2>
-                <div class="options">
-                    ${question.options.map((option, i) => `<button onclick="checkAnswer(${i}, ${index})">${option}</button>`).join("")}
+                <h2 style="text-align: center;">${question.question}</h2>
+                <div class="options" style="display: flex; justify-content: center;">
+                    ${question.options.map((option, i) => `<button onclick="checkAnswer(${i}, ${index})" style="margin: 0 10px;">${option}</button>`).join("")}
                 </div>
             `;
+            questionsContainer.classList.remove("hidden");
         }
 
         function checkAnswer(selectedIndex, questionIndex) {
