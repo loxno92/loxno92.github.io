@@ -1,76 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Computer Type Test</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Computer Detection Test</title>
 </head>
 <body>
-	<div id="container">
-		<h1 id="result-heading"></h1>
-		<div id="result"></div>
-		<form id="computer-form>
-			<fieldset>
-				<legend>Budget:</legend>
-				<label><input type="radio" name="budget" value="a" required> 30.000 - 50.000</label>
-				<label><input type="radio" name="budget" value="b"> 50.000 - 70.000</label>
-				<label><input type="radio" name="budget" value="c"> 70.000 - 90.000</label>
-				<label><input type="radio" name="budget" value="f"> 90.000 - 110.000</label>
-			</fieldset>
-			<fieldset>
-				<legend>Zadachi:</legend>
-				<label><input type="radio" name="zadachi" value="a1" required> Rabota</label>
-				<label><input type="radio" name="zadachi" value="b1"> Igri</label>
-				<label><input type="radio" name="zadachi" value="c1"> Razrabotka</label>
-				<label><input type="radio" name="zadachi" value="d1"> Drygoe</label>
-			</fieldset>
-			<button type="submit" id="submit-button">Submit</button>
-		</form>
-	</div>
+    <div class="container">
+        <h1>Computer Detection Test</h1>
+        <button id="start-btn">Start</button>
+        <div id="questions-container" class="hidden">
+            <!-- Questions will be loaded here -->
+        </div>
+    </div>
+    <script>
+        const questions = [
+            {
+                question: "What is the primary function of the CPU?",
+                options: ["Process data", "Store data", "Control peripherals", "All of the above"],
+                correctAnswer: 0
+            },
+            {
+                question: "What is the primary function of the GPU?",
+                options: ["Process data", "Store data", "Control peripherals", "All of the above"],
+                correctAnswer: 3
+            },
+            {
+                question: "What is the primary function of the RAM?",
+                options: ["Process data", "Store data", "Control peripherals", "All of the above"],
+                correctAnswer: 1
+            }
+        ];
 
-	<script>
-		const form = document.getElementById("computer-form");
-		const result = document.getElementById("result");
-		const resultHeading = document.getElementById("result-heading");
-		const submitButton = document.getElementById("submit-button")
+        const startBtn = document.getElementById("start-btn");
+        const questionsContainer = document.getElementById("questions-container");
 
-		form.addEventListener("submit", function(event){
-			event.preventDefault();
+        startBtn.addEventListener("click", () => {
+            startBtn.classList.add("hidden");
+            loadQuestion(0);
+        });
 
-			const computer = document.querySelector('input[name="computer"]:checked').value;
-			const os = document.querySelector('input[name="os"]:checked').value;
+        function loadQuestion(index) {
+            const question = questions[index];
+            questionsContainer.innerHTML = `
+                <h2>${question.question}</h2>
+                <div class="options">
+                    ${question.options.map((option, i) => `<button onclick="checkAnswer(${i}, ${index})">${option}</button>`).join("")}
+                </div>
+            `;
+        }
 
-			let message = "";
-			if (computer === "desktop"){
-				message += "You have a desktop computer.<br>";
-			} else if (computer === "laptop"){
-				message += "You have a laptop.<br>";
-			} else if (computer === "tablet"){
-				message += "You have a tablet.<br>";
-			} else if (computer === "smartphone"){
-				message += "You have a smartphone.<br>";
-			}
-
-			if (os === "windows"){
-				message += "Your operating system is Windows.<br>";
-			} else if (os === "macos"){
-				message += "Your operating system is macOS.<br>";
-			} else if (os === "linux")(
-				message += "Your operating system is Linux.<br>";
-			} else if (os === "chromeos")(
-				message += "Your operating system is Chrome OS.<br>";
-			}
-
-			resultHeading.innerHTML = "Your Result:"
-			result.innerHTML = message;
-			result.style.display = "block"
-
-			// Hide answer options
-			const radioButtons = document.querySelectorAll('input[type="radio"]')
-			for (let i = 0; i < radioButtons.length; i++) {
-				radioButtons[i].style.display = "none",
-			}
-		}
-	</script>
+        function checkAnswer(selectedIndex, questionIndex) {
+            if (selectedIndex === questions[questionIndex].correctAnswer) {
+                alert("Correct!");
+            } else {
+                alert("Incorrect. The correct answer is: " + questions[questionIndex].options[questions[questionIndex].correctAnswer]);
+            }
+            if (questionIndex < questions.length - 1) {
+                loadQuestion(questionIndex + 1);
+            } else {
+                alert("Test completed!");
+            }
+        }
+    </script>
 </body>
 </html>
