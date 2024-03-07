@@ -1,0 +1,17 @@
+body {
+  background-color: #FF5900;
+}
+
+fieldset {
+  background-color: #00AF64;
+}
+
+#computer-form input[type="submit"] {
+  background-color: #0B61A4;
+  transition: background-color 0.3s ease;
+}
+
+#computer-form input[type="submit"]:active,
+#computer-form input[type="submit"]:focus {
+  background-color: #033E6B;
+}
