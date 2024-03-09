@@ -3,67 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Computer Detection Test</title>
+    <title>Budget and Reason</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            display: flex;
+            justify-content: space-between;
+        }
+        .option {
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .option:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Computer Detection Test</h1>
-        <button id="start-btn">Start</button>
-        <div id="questions-container" class="hidden">
-            <!-- Questions will be loaded here -->
+        <div class="question">
+            <h2>What is the budget?</h2>
+            <div class="options">
+                <div class="option" id="optionA">30,000 - 50,000</div>
+                <div class="option" id="optionB">50,000 - 70,000</div>
+                <div class="option" id="optionC">70,000 - 90,000</div>
+            </div>
         </div>
+        <div class="question">
+            <h2>Why do you need a computer?</h2>
+            <div class="options">
+                <div class="option" id="optionA1">Work</div>
+                <div class="option" id="optionB1">Games</div>
+                <div class="option" id="optionC1">Video Editing</div>
+            </div>
+        </div>
+        <div id="result"></div>
     </div>
     <script>
-        const questions = [
-            {
-                question: "What is the primary function of the CPU?",
-                options: ["Process data", "Store data", "Control peripherals", "All of the above"],
-                correctAnswer: 0
-            },
-            {
-                question: "What is the primary function of the CPU?",
-                options: ["Process data", "Store data", "Control peripherals", "All of the above"],
-                correctAnswer: 0
-            },
-            {
-                question: "What is the primary function of the CPU?",
-                options: ["Process data", "Store data", "Control peripherals", "All of the above"],
-                correctAnswer: 0
-            }
-        ];
+        const optionA = document.getElementById('optionA');
+        const optionB = document.getElementById('optionB');
+        const optionC = document.getElementById('optionC');
+        const optionA1 = document.getElementById('optionA1');
+        const optionB1 = document.getElementById('optionB1');
+        const optionC1 = document.getElementById('optionC1');
+        const result = document.getElementById('result');
 
-        const startBtn = document.getElementById("start-btn");
-        const questionsContainer = document.getElementById("questions-container");
-
-        startBtn.addEventListener("click", () => {
-            startBtn.classList.add("hidden");
-            loadQuestion(0);
-        });
-
-        function loadQuestion(index) {
-            const question = questions[index];
-            questionsContainer.innerHTML = `
-                <h2 style="text-align: center;">${question.question}</h2>
-                <div class="options" style="display: flex; justify-content: center;">
-                    ${question.options.map((option, i) => `<button onclick="checkAnswer(${i}, ${index})" style="margin: 0 10px;">${option}</button>`).join("")}
-                </div>
-            `;
-            questionsContainer.classList.remove("hidden");
-        }
-
-        function checkAnswer(selectedIndex, questionIndex) {
-            if (selectedIndex === questions[questionIndex].correctAnswer) {
-                alert("Correct!");
-            } else {
-                alert("Incorrect. The correct answer is: " + questions[questionIndex].options[questions[questionIndex].correctAnswer]);
-            }
-            if (questionIndex < questions.length - 1) {
-                loadQuestion(questionIndex + 1);
-            } else {
-                alert("Test completed!");
+        function getSelectedOption() {
+            if (optionA.classList.contains('selected')) {
+                return 'A';
+            } else if (optionB.classList.contains('selected')) {
+                return 'B';
+            } else if (optionC.classList.contains('selected')) {
+                return 'C';
             }
         }
+
+        function getSelectedReason() {
+            if (optionA1.classList.contains('selected')) {
+                return 'A1';
+            } else if (optionB1.classList.contains('selected')) {
+                return 'B1';
+            } else if (optionC1.classList.contains('selected')) {
+                return 'C1';
+            }
+        }
+
+        function showResult() {
+            const selectedOption = getSelectedOption();
+            const selectedReason = getSelectedReason();
+            if (selectedOption && selectedReason) {
+                result.innerHTML = `Option ${selectedOption} and Option ${selectedReason}`;
+            } else {
+                result.innerHTML = 'Please select a budget and a reason.';
+            }
+        }
+
+        function handleOptionClick(event) {
+            const target = event.target;
+            if (target.classList.contains('option')) {
+                const selectedOption = document.querySelector('.option.selected');
+                if (selectedOption) {
+                    selectedOption.classList.remove('selected');
+                }
+                target.classList.add('selected');
+                showResult();
+            }
+        }
+
+        document.querySelector('.options').addEventListener('click', handleOptionClick);
     </script>
 </body>
 </html>
