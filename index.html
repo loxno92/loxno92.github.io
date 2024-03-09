@@ -120,10 +120,11 @@
             } else {
                 result = 'Sorry, your answer combination is not available.';
             }
+            let info = document.getElementById('result')
             let data = {
-                    result: result
+                    result: info
                 }
-                tg.sendData(JSON.stringify(data));
+                tg.sendData(JSON.toString(data));
                 tg.close();
 
             });
