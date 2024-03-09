@@ -120,9 +120,8 @@
             } else {
                 result = 'Sorry, your answer combination is not available.';
             }
-            let info = document.getElementById("result")
             let data = {
-                    result: info
+                    result: result
                 }
                 tg.sendData(JSON.stringify(data));
                 tg.close();
