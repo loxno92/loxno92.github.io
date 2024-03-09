@@ -101,37 +101,33 @@
             const goal = document.getElementById('goal').value;
             let result;
             if (budget === '30000-50000' && goal === 'work') {
-                result = 'Option A. "50,000 - 70,000" and "Work"';
+                result = 'A';
             } else if (budget === '30000-50000' && goal === 'games') {
-                result = 'Option A1. "50,000 - 70,000" and "games"';
+                result = 'A1';
             } else if (budget === '30000-50000' && goal === 'video-editing') {
-                result = 'Option A2. "50,000 - 70,000" and "video editing"';
+                result = 'A2';
             } else if (budget === '50000-70000' && goal === 'work') {
-                result = 'Option B. "70,000 - 90,000" and "Work"';
+                result = 'B';
             } else if (budget === '50000-70000' && goal === 'games') {
-                result = 'Option B1. "70,000 - 90,000" and "games"';
+                result = 'B1';
             } else if (budget === '50000-70000' && goal === 'video-editing') {
-                result = 'Option B2. "70,000 - 90,000" and "video editing"';
+                result = 'B2';
             } else if (budget === '70000-90000' && goal === 'work') {
-                result = 'Option C. "70,000 - 90,000" and "Work"';
+                result = 'C';
             } else if (budget === '70000-90000' && goal === 'games') {
             } else if (budget === '70000-90000' && goal === 'video-editing') {
-                result = 'Option C2. "70,000 - 90,000" and "video editing"';
+                result = 'C2';
             } else {
                 result = 'Sorry, your answer combination is not available.';
             }
-                resultElement.textContent = result;
-            });
-            let result = document.getElementById("result")
-            let submit = document.getElementById("submit")
-
-            submit.addEventListener("click", () => {
-                let data = {
-                    result: result
+            let info = document.getElementById("result")
+            let data = {
+                    result: info
                 }
                 tg.sendData(JSON.stringify(data));
                 tg.close();
-            })
+
+            });
     </script>
 </body>
 </html>
