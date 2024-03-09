@@ -89,7 +89,7 @@
         </div>
         <button type="submit">Submit</button>
     </form>
-    <div id="result"></div>
+    <div id="res"></div>
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
@@ -120,8 +120,9 @@
             } else {
                 result = 'Sorry, your answer combination is not available.';
             }
+            let bc = result.value;
             let data = {
-                    result: result
+                    result: bc
                 }
                 tg.sendData(JSON.stringify(data));
                 tg.close();
